@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+
 
 function App() {
 
@@ -15,7 +19,13 @@ function App() {
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
         .then((response) => {
-            return response.json();
+            console.log(response);
+            if(response.status === 400){
+                alert('Cidade inválida');
+            }
+            else{
+                return response.json();
+            }
         })
         .then((data) => {
             console.log(data);
@@ -67,8 +77,8 @@ function App() {
 
                 <div className="searchBar">
                     <form>
-                        <input type="text" placeholder="Digite outra cidade" id="inputCity"/>
-                        <button type="button" className="searchCityButton" onClick={getCity}>Procurar</button>
+                        <input type="text" placeholder="Digite outra cidade" id="inputCity" required />
+                        <button type="button" className="searchCityButton" onClick={getCity}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
                     </form>
                 </div>
                 {weather ? (

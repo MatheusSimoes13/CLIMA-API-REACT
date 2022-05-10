@@ -7,6 +7,7 @@ function Footer() {
                 <p>API Por: https://openweathermap.org</p>
             </div>
         </footer>
+        
     );
 }
 

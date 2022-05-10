@@ -104,5 +104,6 @@ button{
 }
 
 .searchCityButton{
-  width: 150px;
+  width: 100px;
+  background-color: white;
 }
