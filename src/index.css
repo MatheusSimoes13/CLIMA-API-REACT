@@ -96,3 +96,13 @@ button{
   margin: 10px 10px;
   width: 120px;
 }
+
+.searchBar{
+  text-align: center;
+  margin-top: 10px;
+  
+}
+
+.searchCityButton{
+  width: 150px;
+}

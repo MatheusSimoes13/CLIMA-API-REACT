@@ -8,6 +8,21 @@ function App() {
     const [city, setCity] = useState("Santos");
     const [weather, setWeather] = useState(null);  // useState({})
 
+    const getCity = () => {
+
+        const inputCity = document.getElementById("inputCity").value;
+        setCity(inputCity);
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            setWeather(data);
+        })
+    }
+
     const getSantos = () => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=-23.974023&lon=-46.311010&appid=${API_KEY}&units=metric`)
         .then((response) => {
@@ -45,9 +60,17 @@ function App() {
     return(
         <section className="centered">
             <div className="search">
+
                 <button className="button-29" onClick={getSantos}>Santos</button>
                 <button className="button-29" onClick={getSaoPaulo}>São Paulo</button>
                 <button className="button-29" onClick={getBlumenau}>Blumenau</button>
+
+                <div className="searchBar">
+                    <form>
+                        <input type="text" placeholder="Digite outra cidade" id="inputCity"/>
+                        <button type="button" className="searchCityButton" onClick={getCity}>Procurar</button>
+                    </form>
+                </div>
                 {weather ? (
                     <>
                         <li>{weather.name} °C</li>
@@ -60,7 +83,5 @@ function App() {
     );
 
 }
-   // );
-//}
 
 export default App;
