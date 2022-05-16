@@ -11,6 +11,8 @@ function App() {
 
     const [city, setCity] = useState("Santos");
     const [weather, setWeather] = useState(null);  // useState({})
+    var iconURL = "";
+
 
     const getCity = () => {
 
@@ -66,6 +68,7 @@ function App() {
         })
     }
 
+    iconURL = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
 
     return(
         <section className="centered">
@@ -82,9 +85,12 @@ function App() {
                     </form>
                 </div>
                 {weather ? (
-                    <>
+                        
+                    <>  
+
                         <li>{weather.name} °C</li>
                         <li>{weather.main.temp} °C</li>
+                        <li><img src={iconURL} alt="icon"/></li>
                     </>
                 ) : null}
                 
