@@ -10,9 +10,7 @@ function App() {
     const API_KEY = "c505d32864c696defe980486164c85c5";
 
     const [city, setCity] = useState("Santos");
-    const [weather, setWeather] = useState(null);  // useState({})
-    var iconURL = "";
-
+    const [weather, setWeather] = useState();  // useState({})
 
     const getCity = () => {
 
@@ -68,8 +66,6 @@ function App() {
         })
     }
 
-    iconURL = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
-
     return(
         <section className="centered">
             <div className="search">
@@ -85,12 +81,12 @@ function App() {
                     </form>
                 </div>
                 {weather ? (
-                        
+                    
                     <>  
 
                         <li>{weather.name} °C</li>
                         <li>{weather.main.temp} °C</li>
-                        <li><img src={iconURL} alt="icon"/></li>
+                        <li><img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="icon"/></li>
                     </>
                 ) : null}
                 
